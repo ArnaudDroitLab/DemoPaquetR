@@ -32,7 +32,36 @@ Les fichiers/dossiers suivant seront créés:
 * `NAMESPACE`: Fichier qui décrit les paquets/fonctions importés et exportés
 * `R/`: Là où on va retrouver tout le code
 
-On doit modifier manuellement le fichier `DESCRIPTION`.
+On doit modifier manuellement le fichier `DESCRIPTION`:
+
+```
+Package: paquet
+Title: Paquet démo pour formation
+Version: 0.0.0.9000
+Authors@R:
+    person(given = "Charles",
+           family = "Joly",
+           role = c("aut", "cre"),
+           email = "selarch@gmail.com",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Montrer comment bâtir un paquet.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Depends:
+    R (>= 3.5)
+```
+
+Il faut donc remplir les sections suivantes:
+
+* `Title`: Un titre bref, mais informatif.
+* `Authors@R`: La liste des auteurs.
+* `Description`: Un court survol des caractéristiques du paquet.
+
+De plus, pour éviter des problèmes lors des validations du paquet, on ajoutera
+une dépendance à une version de R (la partie `R (>= 3.5)` dans la section
+`Depends:`).
 
 Le fichier `NAMESPACE` ne devrait pas être directement modifier. Il faut plutôt
 passer par la documentation avec ROxygen et `devtools::document()`.
@@ -249,11 +278,13 @@ Authors@R:
            role = c("aut", "cre"),
            email = "selarch@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Montrer comment bâtir un paquet
+Description: Montrer comment bâtir un paquet.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Depends:
+    R (>= 3.5)
 Imports:
     dplyr
 Suggests:
@@ -349,11 +380,13 @@ Authors@R:
            role = c("aut", "cre"),
            email = "selarch@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: Montrer comment bâtir un paquet
+Description: Montrer comment bâtir un paquet.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1
+Depends:
+    R (>= 3.5)
 Imports:
     dplyr
 Suggests:
