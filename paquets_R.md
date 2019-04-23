@@ -1,6 +1,6 @@
 ## Paquets nécessaires
 
-Les outils `devtools` et `usethis` qui ont été créés et sont maintenu par
+Les outils `devtools` et `usethis` ont été créés et sont maintenus par
 Rstudio. Ils permettent d'automatiser la création et l'initialisation des
 fichiers et des répertoires en plus de faciliter la documentation et les tests
 des fonctions lors de la mise en place de notre paquet.
@@ -69,7 +69,8 @@ passer par la documentation avec ROxygen et `devtools::document()`.
 ### License
 
 Le paquet `usethis` permet de créer les fichiers de licenses. Plusieurs types
-de licenses
+de licenses sont disponibles. Dans cet exemple, nous utiliserons la licence
+MIT:
 
 ```r
 usethis::use_mit_license("Charles Joly")
@@ -193,7 +194,7 @@ Puis recréer la documentation:
 devtools::document()
 ```
 
-Finalement, on recharger le paquet pour valider que tout a bien fonctionné:
+Finalement, on recharge le paquet pour valider que tout a bien fonctionné:
 
 ```r
 devtools::load_all()
@@ -211,7 +212,7 @@ export(add)
 #### Importer
 
 Un des buts des paquets R est de s'assurer que tous les paquets nécessaires
-pour l'exécution des fonctionnalités soient présents lors de leur appel. 
+pour l'exécution des fonctionnalités soient présents lors de leur appel.
 
 Au niveau de la structure du paquet, celà implique de modifier les fichiers
 `DESCRIPTION` et `NAMESPACE` de manière à réfléter les besoins de notre paquet.
@@ -303,8 +304,8 @@ import(dplyr)
 ### `Import`, `Depends` et `Suggests`
 
 Dans la majorité des cas, lorsqu'on veut ajouter une dépendance à un paquet
-externe, on va utiliser `Imports` (`@import`). De cette manière, les fonctions
-du paquets seront chargés, mais ce dernier ne sera pas attaché.
+externe, on va utiliser `Imports`. De cette manière, les fonctions du paquets
+seront chargés, mais ce dernier ne sera pas attaché.
 
 R fait la distinction entre charger (*Loading*) et attacher (*Attaching*).
 
@@ -327,7 +328,7 @@ des fonctions.
 
 Lorsqu'on utilise `Depends`, le paquet importé sera également attaché.
 L'utilisateur aura donc accès à toutes les fonctions exportées par ce paquet
-lorsque notre paquet sera utilisé. On va utiliser `Depends` lorsque le paquet
+lorsqu'il sera utilisé. On va utiliser `Depends` lorsque le paquet
 complémentaire est indissociable de notre paquet et que l'utilisateur devra
 nécessairement utiliser les deux paquets conjointement lors d'une analyse.
 
@@ -522,7 +523,7 @@ usethis::use_data(y, z, internal = TRUE)
 ### Données brutes
 
 On sauvegarde les données brutes dans le répertoire `inst/extdata`. Il est
-possible d'accéder à ces données à l'aide de la fonction 
+possible d'accéder à ces données à l'aide de la fonction `system.file`:
 
 ```r
 library(readr)
@@ -536,7 +537,7 @@ La vignette est généralement le premier contact qu'un utilisateur aura avec
 notre paquet. Il faut donc s'assurer d'y intégrer toutes les informations
 pertinentes pour bien comprendre le but de l'outil.
 
-La vignette ne sera donc pas une documentation détaillées de l'ensemble des
+La vignette ne sera donc pas une documentation détaillée de l'ensemble des
 fonctions de notre paquet, contrairement aux manuels. On devra plutôt commencer
 par expliquer clairement quel est le but de notre paquet et dans quel contexte
 il devrait être utilisé.
@@ -560,7 +561,7 @@ une première version minimale du paquet et de la tester rapidement. Il sera
 ainsi possible d'éviter de se retrouver devant des dizaines de problèmes à
 régler d'un seul coup. Une fois qu'on a une version qui passe tous les tests,
 on pourra ajouter progressivement les autres fonctionnalités du paquet et les
-tester au fur et à mesure. 
+tester au fur et à mesure.
 
 ### `R CMD build`
 
@@ -608,6 +609,11 @@ R CMD check paquet_0.0.0.9000.tar.gz
 * checking package namespace information ... OK
 * checking package dependencies ... OK
 [...]
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
 * checking running R code from vignettes ...
    ‘ma-vignette.Rmd’ using ‘UTF-8’ ... OK
  NONE
@@ -615,10 +621,7 @@ R CMD check paquet_0.0.0.9000.tar.gz
 * checking PDF version of manual ... OK
 * DONE
 
-Status: 1 WARNING, 1 NOTE
-See
-  ‘/Users/charles/Tests/paquet.Rcheck/00check.log’
-for details.
+Status: OK
 ```
 
 Pour être accepté, un paquet ne doit pas avoir ni d'`ERRORS`, ni de `WARNINGS`.
@@ -627,7 +630,7 @@ code en conséquence. Finalement, on relancera le build et le check jusqu'à ce
 qu'ils passent sans erreurs.
 
 Les `NOTES` devraient être corrigés lorsque c'est possible, mais elles
-n'empêchera pas la soumission du paquet sur CRAN ou Bioconductor. 
+n'empêchera pas la soumission du paquet sur CRAN ou Bioconductor.
 
 ### `R CMD BiocCheck`
 
@@ -642,9 +645,35 @@ On peut ensuite lancer le BiocCheck de la manière suivante:
 
 ```bash
 R CMD BiocCheck paquet_0.0.0.9000.tar.gz
+This is BiocCheck version 1.19.33. BiocCheck is a work in progress.
+Output and severity of issues may change. Installing package...
+* Checking Package Dependencies...
+* Checking if other packages can import this one...
+* Checking to see if we understand object initialization...
+* Checking for deprecated package usage...
+* Checking for remote package usage...
+* Checking version number...
+[...]
+* Checking for support site registration...
+    Maintainer is registered at support site.
+
+
+Summary:
+ERROR count: 2
+WARNING count: 1
+NOTE count: 3
+For detailed information about these checks, see the BiocCheck
+vignette, available at
+https://bioconductor.org/packages/3.9/bioc/vignettes/BiocCheck/inst/doc/BiocCheck.html#interpreting-bioccheck-output
+BiocCheck FAILED.
 ```
 
 Encore une fois, il est obligatoire de régler toutes les erreurs et les
 avertissements. Il faut tenter de régler également toutes les notes dans la
 mesure du possible. Les gens de Bioconductor pourraient exiger de les régler
 lors de la soumission du paquet.
+
+Dans notre cas, on peut voir qu'il y a des erreurs et des avertissements. C'est
+parce que nous avons mis en place un paquet qui respecte les recommandation
+pour un paquet standard sans tenir compte des critères spécifiques à
+Bioconductor.
