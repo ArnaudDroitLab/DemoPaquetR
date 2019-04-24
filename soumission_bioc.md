@@ -5,8 +5,8 @@
 Il existe deux repositoires publiques acceptant des paquets R: 
 [CRAN](https://cran.r-project.org/) et 
 [Bioconductor](https://www.bioconductor.org/). CRAN accepte les paquets 
-d'intérêt général (par exemple, tous les paquets du [tidyverse]
-(https://www.tidyverse.org/). Bioconductor se spécialise dans les paquets du
+d'intérêt général (par exemple, tous les paquets du [tidyverse](https://www.tidyverse.org/).
+Bioconductor se spécialise dans les paquets du
 domaine bioinformatique.
 
 Une bonne règle de pouce pour savoir où votre paquet devrait aller: si votre 
@@ -15,16 +15,15 @@ Bioconductor.
 
 [Lien pour la soumission de paquets CRAN](https://cran.r-project.org/submit.html)
 
-[Lien pour la soumission de paquets Bioconductor]
-(https://www.bioconductor.org/developers/package-submission/)
+[Lien pour la soumission de paquets Bioconductor](https://www.bioconductor.org/developers/package-submission/)
 
 Nous nous concentrerons sur la soumission à Bioconductor, qui sera celle choisie
 pour la plupart de vos projets.
 
 ## Soumission à Bioconductor
 
-Bioconductor fournit des [instructions détaillées]
-(https://www.bioconductor.org/developers/package-submission/) pour la soumission 
+Bioconductor fournit des [instructions détaillées](https://www.bioconductor.org/developers/package-submission/)
+pour la soumission 
 de paquets. Toutefois, avant de s'attaquer aux pré-requis spécifique de 
 Bioconductor, assurez-vous des choses suivantes:
 
@@ -75,9 +74,9 @@ doit répondre aux rapports de bugs et s'assurer que le paquet continue de
 passer BUILD, CHECK et BiocCheck pour toutes les nouvelles sorties de 
 Bioconductor, qui arrivent deux fois par ans (fin avril et fin octobre).
 
-Le mainteneur du paquet doit également s'abonner à la liste [bioc-devel]
-(https://stat.ethz.ch/mailman/listinfo/bioc-devel) et s'inscire au [site de 
-support de Bioconductor](https://support.bioconductor.org/).
+Le mainteneur du paquet doit également s'abonner à la liste 
+[bioc-devel](https://stat.ethz.ch/mailman/listinfo/bioc-devel) et s'inscire au 
+[site de support de Bioconductor](https://support.bioconductor.org/).
 
 ### Processus de soumission
 
@@ -89,8 +88,8 @@ nouveau BUILD de votre paquet.
 
 [Procédure d'ajour du WebHook](https://github.com/Bioconductor/Contributions#adding-a-web-hook)
 
-Lorsque le paquet est prêt pour la soumission, il faut [créer une issue]
-(https://github.com/Bioconductor/Contributions/issues/new) sur le
+Lorsque le paquet est prêt pour la soumission, il faut 
+[créer une issue](https://github.com/Bioconductor/Contributions/issues/new) sur le
 github de [Bioconductor/Contributions](https://github.com/Bioconductor/Contributions).
 
 Un des modérateurs de Biocondcutor prendra état de votre soumission et, si
@@ -105,8 +104,8 @@ Peu importe à quel point vous avez été soucieux et minutieux et que vous avez
 refait BUILD, CHECK et BiocCheck sur votre propre machine avant de soumettre, 
 votre premier BUILD sur Bioconductor échouera de façon humiliante et 
 catastrophique. bioc-issue-bot ajoutera alors un commentaire à votre issue
-avec un lien vers le [build report]
-(http://bioconductor.org/spb_reports/metagene2_buildreport_20190405175625.html).
+avec un lien vers le 
+[build report](http://bioconductor.org/spb_reports/metagene2_buildreport_20190405175625.html).
 Vous pouvez alors effectuer et pousser des 
 correctifs sur votre git. Lorsque vous êtes prêts à retenter le processus de 
 BUILD, vous devez incrémenter le 'z' de votre numéro de version et poussez la 
