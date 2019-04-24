@@ -37,6 +37,8 @@ Bioconductor, assurez-vous des choses suivantes:
   du projet.
 - Votre paquet doit passer R CMD CHECK et R CMD BiocCheck sans avertissements
   et sans erreurs.
+- Le numéro de version de votre paquet est 0.99.0. 
+- Votre paquet doit être bien documenté. Une vignette est quasi-obligatoire.
   
 ### Types de paquet Bioconductor
 
@@ -63,6 +65,8 @@ des données un peu plus retravaillées.
 [Créer un paquet ExperimentHub](http://bioconductor.org/packages/release/bioc/vignettes/ExperimentHub/inst/doc/CreateAnExperimentHubPackage.html)
 [Créer un paquet AnnotationHub](http://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/CreateAnAnnotationPackage.html)
 
+### Bioconductor devel vs Bioconductor release
+
 ### Obligations liées à la soumission de paquets
 
 Soumettre un paquet à Bioconductor implique diverses obligations. Notamment,
@@ -74,3 +78,44 @@ Bioconductor, qui arrivent deux fois par ans (fin avril et fin octobre).
 Le mainteneur du paquet doit également s'abonner à la liste [bioc-devel]
 (https://stat.ethz.ch/mailman/listinfo/bioc-devel) et s'inscire au [site de 
 support de Bioconductor](https://support.bioconductor.org/).
+
+### Processus de soumission
+
+Avant de soumettre le paquet à Bioconductor, vous devez ajouter un webhook au 
+git de celui-ci. Un webhook est une fonctionalité de github qui fait qu'un site
+externe peut être notifié chaque fois que vous poussez de nouvelles modifications.
+Bioconductor utilisera ces notifications pour déterminer quand il doit lancer un 
+nouveau BUILD de votre paquet.
+
+[Procédure d'ajour du WebHook](https://github.com/Bioconductor/Contributions#adding-a-web-hook)
+
+Lorsque le paquet est prêt pour la soumission, il faut [créer une issue]
+(https://github.com/Bioconductor/Contributions/issues/new) sur le
+github de [Bioconductor/Contributions](https://github.com/Bioconductor/Contributions).
+
+Un des modérateurs de Biocondcutor prendra état de votre soumission et, si
+celle-ci semble pertinente, lui assignera un reviewer.
+
+Lorsqu'un reviewer est assigné, Bioconductor lancera une build de votre paquet.
+Votre git sera cloné sur les machines de build de Bioconductor, et celui-ci
+sera BUILD-é, CHECK-é et BiocCheck-é sur les trois plateformes supportés par 
+Bioconductor: Windows, Unix et MacOS.
+
+Peu importe à quel point vous avez été soucieux et minutieux et que vous avez
+refait BUILD, CHECK et BiocCheck sur votre propre machine avant de soumettre, 
+votre premier BUILD sur Bioconductor échouera de façon humiliante et 
+catastrophique. bioc-issue-bot ajoutera alors un commentaire à votre issue
+avec un lien vers le [build report]
+(http://bioconductor.org/spb_reports/metagene2_buildreport_20190405175625.html).
+Vous pouvez alors effectuer et pousser des 
+correctifs sur votre git. Lorsque vous êtes prêts à retenter le processus de 
+BUILD, vous devez incrémenter le 'z' de votre numéro de version et poussez la 
+modification. Seuls les push où le numéro de version est incrémenté relance le
+BUILD de Bioconductor.
+
+Une fois que le paquets passera l'étape de BUILD, votre reviewer vous fera ses
+demandes et commentaires. Vous devrez y répondre avant de pouvoir soumettre
+votre paquet. Même si les NOTES de BiocCheck n'empêchent pas un paquet d'être 
+publié, celles-ci font généralement l'objet de commentaires des reviewers.
+
+[Exemple de soumission](https://github.com/Bioconductor/Contributions/issues/1081)
