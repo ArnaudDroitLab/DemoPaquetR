@@ -237,7 +237,7 @@ pour l'exécution des fonctionnalités soient présents lors de leur appel.
 
 Au niveau de la structure du paquet, cela implique de modifier les fichiers
 `DESCRIPTION` et `NAMESPACE` de manière à réfléter les besoins de notre paquet.
-L'on reviendra sur le fichier `DESCRIPTION` dans la section suivate.
+L'on reviendra sur le fichier `DESCRIPTION` dans la section suivante.
 
 Par exemple, supposons que l'on veut des fonctionalités de `dplyr`:
 
