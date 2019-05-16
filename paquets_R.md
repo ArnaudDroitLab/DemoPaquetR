@@ -727,3 +727,8 @@ Dans notre cas, on peut voir qu'il y a des erreurs et des avertissements. C'est
 parce que nous avons mis en place un paquet qui respecte les recommandation
 pour un paquet standard sans tenir compte des critères spécifiques à
 Bioconductor.
+
+## Références
+
+Le livre [R Packages](http://r-pkgs.had.co.nz/) par Hadley Wickam explique les bonnes pratiques de développement R.
+[Le manuel de référence de développement d'extension R](https://cran.r-project.org/doc/manuals/r-release/R-exts.html), une source plus hermétique mais plus complète.
