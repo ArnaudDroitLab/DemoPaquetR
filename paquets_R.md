@@ -45,10 +45,9 @@ Authors@R:
            email = "selarch@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Montrer comment bâtir un paquet.
-License: MIT + file LICENSE
+License: What license it uses
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
 Depends:
     R (>= 3.5)
 ```
@@ -220,7 +219,9 @@ exportée:
 export(add)
 ```
 
-La fonction pourra désormais être utilisée après le chargement du paquet.
+Pour l'utilisateur, la fonction pourra désormais être utilisée après le
+chargement du paquet.
+
 ```r
 > add(3,4)
 Error: object 'add' not found
@@ -377,12 +378,15 @@ Description: Montrer comment bâtir un paquet.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
 Depends:
-    R (>= 3.5)
+    R (>= 3.5),
     dplyr
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
 ```
 
 Pour le tester, on peut utiliser `devtools::load_all()` en spécifiant
@@ -428,13 +432,16 @@ Description: Montrer comment bâtir un paquet.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.1
 Depends:
     R (>= 3.5)
 Imports:
     dplyr
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
 ```
 
 On peut voir ensuite qu'il n'est plus possible d'utiliser les fonctions de
