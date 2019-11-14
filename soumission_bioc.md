@@ -24,7 +24,7 @@ pour la plupart de vos projets.
 
 Bioconductor fournit des [instructions détaillées](https://www.bioconductor.org/developers/package-submission/)
 pour la soumission 
-de paquets. Toutefois, avant de s'attaquer aux pré-requis spécifique de 
+de paquets. Toutefois, avant de s'attaquer aux pré-requis spécifiques de 
 Bioconductor, assurez-vous des choses suivantes:
 
 - Votre paquet a son propre git sur github. Le répertoire a racine du paquet
@@ -32,7 +32,7 @@ Bioconductor, assurez-vous des choses suivantes:
   cadre de votre travail au labo, je vous suggère d'utiliser le groupe
   [ArnaudDroitLab](https://github.com/ArnaudDroitLab).
 - Votre paquet doit avoir un champs BugReports dans son fichier DESCRIPTION.
-  Je vous suggère fortemnt d'utiliser la page *issues* du répertoire git
+  Je vous suggère fortement d'utiliser la page *issues* du répertoire git
   du projet.
 - Votre paquet doit passer R CMD CHECK et R CMD BiocCheck sans avertissements
   et sans erreurs.
@@ -62,6 +62,7 @@ Généralement, AnnotationHub contient des données plus brutes, ExperimentHub,
 des données un peu plus retravaillées.
 
 [Créer un paquet ExperimentHub](http://bioconductor.org/packages/release/bioc/vignettes/ExperimentHub/inst/doc/CreateAnExperimentHubPackage.html)
+
 [Créer un paquet AnnotationHub](http://bioconductor.org/packages/release/bioc/vignettes/AnnotationHub/inst/doc/CreateAnAnnotationPackage.html)
 
 ### Bioconductor devel vs Bioconductor release
@@ -77,6 +78,10 @@ ce qui implique que plusieurs paquets y sont brisés.
 
 Pour utiliser Bioconductor-devel, vous devez suivre les 
 [instructions fournies par Bioconductor](https://bioconductor.org/developers/how-to/useDevel/).
+
+Notez que dépendant de l'OS, BiocManager n'installera pas automatiquement tous
+les paquets à partir de la source. Les distributions binaires des paquets devel
+ne sont pas toujours à jour.
 
 R lance généralement une nouvelle révision vers le mois de mai. Ainsi, 
 au mois d'Avril, Bioconductor-devel utilise également la version développement de
@@ -160,4 +165,29 @@ Vous devrez avoir une pair de clés SSH publique/privée associée à votre comp
 github pour pouvoir y pousser des modifications.
 
 [Ajouter une clé SSH à votre compte git](https://help.github.com/en/articles/connecting-to-github-with-ssh)
+
 [Utiliser git pour maintenir un paquet accepté](https://bioconductor.org/developers/how-to/git/maintain-bioc-only/)
+
+### Gestion des numéros de version post-release
+
+Prenez note que les branches de Bioconductor ne sont pas *push only*. Avec 
+chaque release, Bioconductor incrémentera le y du numéro de version (x.y.z) de 
+votre paquet. Ainsi, lors de la première release de Bioconductor suivant 
+l'acceptation de  votre paquet (que vous aurez soumis comme 0.99.z), 
+Bioconductor incrémentera votre numéro de version comme suit:
+
+- Sur *upstream RELEASE_X_Y*, la branche *RELEASE*, le numéro de version sera 
+  1.0.0.
+- Sur *upstream master*, la nouvelle branche *devel*, le numéro de version sera
+  1.1.0.
+
+Ces incrémentations ne sont pas magiques: elles sont effectuées à travers un
+commit dans git. Vous devez donc, après chaque release, effectuer la commande
+`git pull upstream master` pour aller chercher les commit en question et les 
+intégrer à votre arborescence.
+
+Toutes les modifications majeures de votre code devraient désormais être 
+accompangé par une incrémentation de votre *z* et une mise à jour du fichier
+NEWS, qui devrait suivre le 
+[format](https://www.bioconductor.org/developers/package-guidelines/#news)
+ spécifié par Bioconductor.
