@@ -14,7 +14,7 @@ permettant d'ajouté un tel processus à un projet hébergé sur github.
 Une fois l'intégration à Travis-CI activé, chaque nouveau `push` d'un `commit`
 sur github cause le démarrage d'une machine virtuelle pouvant exécuter une suite
 de scripts arbitraires dont les résultats sont publiés sur 
-[https://travis-ci.org]. Dans le cas d'un paquet R, de tels scripts sont 
+https://travis-ci.org. Dans le cas d'un paquet R, de tels scripts sont 
 généralement utilisés pour effectuer les commande `R CMD build`, `R CMD check`,
 et `R CMD BiocCheck`.
 
@@ -57,7 +57,7 @@ notifications:
 
 ## Activer le profilage de couverture
 
-[https://codecov.io] fournit un outil de visualisation de la couverture du code
+https://codecov.io fournit un outil de visualisation de la couverture du code
 d'un projet par ces tests unitaires, et peut être activé en quelques étapes 
 simples.
 
@@ -81,7 +81,7 @@ after_success:
 ```  
 
 6. Faites un `commit` de `.travis.yml`, `.Rbuildignore`, `README.md` et poussez
-   vos changements. Allez sur [https://travis-ci.org], et fixez la page
+   vos changements. Allez sur https://travis-ci.org, et fixez la page
    intensément jusqu'à ce que le nom de votre projet passe du jaune au vert.
    
    Félicitations! Vous avez miantenant de l'intégration continue pour votre 
@@ -90,9 +90,9 @@ after_success:
 ## Notes utiles
  - Vous pouvez faire une analyse de couverture de votre code locale en appelant 
    `covr::codecov(type="all")`. Pour téléverser les résultats sur 
-   [https://codecov.io], vous devrez toutefois utiliser votre jeton d'accès:
+   https://codecov.io, vous devrez toutefois utiliser votre jeton d'accès:
    `covr::codecov(type="all", token="my-token")`. Votre jeton est disponible
-   sur [https://codecov.io], dans les paramètres de votre projet.
+   sur https://codecov.io, dans les paramètres de votre projet.
  - Vos premiers builds sur Travis-CI sont susceptibles d'échouer, puisque toutes
    vos dépendances sont bâties à partir de leur code source, ce qui prends
    beaucoup de temps et risque de vous faire atteindre la limite de 50 minutes.
