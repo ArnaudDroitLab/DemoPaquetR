@@ -133,6 +133,11 @@ BUILD, vous devez incrémenter le 'z' de votre numéro de version et poussez la
 modification. Seuls les push où le numéro de version est incrémenté relance le
 BUILD de Bioconductor.
 
+**Note :** si vous avez créé une branche pour faire vos correctifs et que vous mergez
+cette branche dans le master pour ensuite pousser les modifications, ne faites pas 
+l'incrémentation de version dans la branche mais bien une fois dans le master. Il 
+semble que le bioc-boc ne soit pas déclenché sinon.
+
 Une fois que le paquets passera l'étape de BUILD, votre reviewer vous fera ses
 demandes et commentaires. Vous devrez y répondre avant de pouvoir soumettre
 votre paquet. Même si les NOTES de BiocCheck n'empêchent pas un paquet d'être 
