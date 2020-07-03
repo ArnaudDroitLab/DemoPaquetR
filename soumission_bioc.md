@@ -37,7 +37,7 @@ Bioconductor, assurez-vous des choses suivantes:
 - Votre paquet doit passer R CMD CHECK et R CMD BiocCheck sans avertissements
   et sans erreurs.
 - Le numéro de version de votre paquet est 0.99.0. 
-- Votre paquet doit être bien documenté. Une vignette est quasi-obligatoire.
+- Votre paquet doit être bien documenté. Une vignette est obligatoire.
   
 ### Types de paquet Bioconductor
 
