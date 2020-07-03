@@ -49,7 +49,7 @@ License: What license it uses
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 3.5)
+    R (>= 4.0.0)
 ```
 
 Il faut donc remplir les sections suivantes:
@@ -245,7 +245,7 @@ Par exemple, supposons que l'on veut des fonctionalités de `dplyr`:
 ```r
 add <- function(x, y) {
     data.frame(res = x + y) %>%
-        tbl_df
+        as_tibble
 }
 ```
 
@@ -253,7 +253,7 @@ Lors de l'appel de la fonction, on obtient l'erreur suivante:
 
 ```r
 > add(3,4)
-Error in data.frame(res = x + y) %>% tbl_df : 
+Error in data.frame(res = x + y) %>% as_tibble : 
   could not find function "%>%"
 ```
 
@@ -285,7 +285,7 @@ sera regénérée. La commande pour importer un paquet est `@import`:
 #' @export
 add <- function(x, y) {
     data.frame(res = x + y) %>%
-        tbl_df
+        as_tibble
 }
 ```
 
@@ -479,11 +479,9 @@ usethis::use_test(name = "add")
 On peut alors modifier le fichier `tests/testthat/test-add.R`:
 
 ```r
-context("test-add")
-
 test_that("add works", {
-  expect_equal(add(2,3)$res, 2+3)
-  expect_equal(add(-2,3)$res, -2+3)
+    expect_equal(add(2,3)$res, 2+3)
+    expect_equal(add(-2,3)$res, -2+3)
 })
 ```
 
